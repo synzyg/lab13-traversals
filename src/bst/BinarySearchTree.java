@@ -182,11 +182,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			}
 			current = in.pop();
 			System.out.print(current + " ");
-		current = current.rightChild;
-		}
 		
 		current = current.rightChild;
 		}
+	}
 	
 	//Traverse the tree in an postorder fashion
 	//Recurse on the children and then print the value in the current node
@@ -215,7 +214,14 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		if(root!=null) {
 			postHelper.push(root);
 			while(!postHelper.isEmpty()) {
-				//how should post and postHelper be updated?
+				BSTNode<T> current = postHelper.pop();
+				post.push(current);
+				if (current.leftChild != null) {
+					postHelper.push(current.leftChild);
+				}
+				if (current.rightChild != null) {
+					postHelper.push(current.rightChild);
+				}
 			}
 			
 			while(!post.isEmpty()) {
@@ -223,8 +229,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
 				System.out.print(node + " ");
 			}
 		}
-
 	}
+
 	
 	public String toString() {
 		return recursiveToString(root, "");		
