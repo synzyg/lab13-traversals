@@ -116,17 +116,14 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	//Traverse the tree in an preorder fashion
 	//Print the current node first and then recurse on the children
 	public void preOrder() {
+		System.out.println("Preorder test commit");
 		preOrderRecurse(root); 
 	}
 	
 	private void preOrderRecurse(BSTNode<T> node) {
-		System.out.println(node);
-		if (!(node.leftChild == null)) {
-			preOrderRecurse(node.leftChild);
-		}
-		if (!(node.rightChild == null)) {
-			preOrderRecurse(node.rightChild);
-		}
+		
+		
+		
 	}
 	
 	//Traverse the tree in an preorder fashion but using a stack
@@ -142,15 +139,33 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	//then recursively print the right side of current node
 	//For a bst this will print the values in sorted order from smallest to largest
 	public void inOrder() {
+		System.out.println("Inorder test commit");
 		inOrderRecurse(root); 
 	}
 	
 	public void inOrderRecurse(BSTNode<T> node) {
+		if(node != null) {
+			inOrderRecurse(node.leftChild);
+			System.out.print(node.data + " ");
+			inOrderRecurse(node.rightChild);
+		}
 		
 	}
 	//Traverse the tree in an inorder fashion but using a stack
 	public void inOrderStack() {
 		Stack<BSTNode<T>> in = new Stack<BSTNode<T>>();
+		BSTNode<T> current = root;
+		while(current != null || !in.isEmpty()) {
+			while (current != null) {
+				in.push(current);
+				current = current.leftChild;
+			}
+			current = in.pop();
+			System.out.print(current + " ");
+		
+		current = current.rightChild;
+		}
+		
 		
 		
 	}
@@ -158,17 +173,12 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	//Traverse the tree in an postorder fashion
 	//Recurse on the children and then print the value in the current node
 	public void postOrder() {
+		System.out.println("PostOrder test commit");
 		postOrderRecurse(root); 
 	}
 	
 	public void postOrderRecurse(BSTNode<T> node) {
-		if (!(node.leftChild == null)) {
-			postOrderRecurse(node.leftChild);
-		}
-		if (!(node.rightChild == null)) {
-			postOrderRecurse(node.rightChild);
-		}
-		System.out.println(node);
+		
 	}
 	
 	//Traverse the tree in an postorder fashion uses Stacks. 
