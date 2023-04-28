@@ -182,10 +182,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			}
 			current = in.pop();
 			System.out.print(current + " ");
+		current = current.rightChild;
+		}
 		
 		current = current.rightChild;
 		}
-	}
 	
 	//Traverse the tree in an postorder fashion
 	//Recurse on the children and then print the value in the current node
